@@ -6,7 +6,7 @@ from aiohttp import ClientSession
 from bs4 import BeautifulSoup, Tag
 from loguru import logger
 
-from .get_response import response_
+from .get_soup import response_
 
 """
 Abstract base classes for selecting text and links from BeautifulSoup Tag objects.

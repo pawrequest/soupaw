@@ -3,7 +3,7 @@ from __future__ import annotations
 from aiohttp import ClientSession
 import bs4
 
-from .get_response import response_
+from .get_soup import response_
 
 
 class TagSoup(bs4.Tag):
