@@ -6,7 +6,7 @@ from aiohttp import ClientSession
 from bs4 import BeautifulSoup, Tag
 from loguru import logger
 
-from .get_soup import response_
+from scrapaw import get_soup
 
 """
 Abstract base classes for selecting text and links from BeautifulSoup Tag objects.
@@ -24,7 +24,7 @@ class TagSelectorABC(ABC):
     @classmethod
     async def from_url(cls, url: str, http_session: ClientSession) -> TagSelectorABC:
         try:
-            html = await response_(url, http_session)
+            html = await get_soup.response_(url, http_session)
             soup = BeautifulSoup(html, "html.parser")
             return cls(soup)
         except Exception as e:
@@ -49,7 +49,7 @@ class PageSelectorABC(TagSelectorABC):
     @classmethod
     async def from_url(cls, url: str, http_session: ClientSession) -> PageSelectorABC:
         try:
-            html = await response_(url, http_session)
+            html = await get_soup.response_(url, http_session)
             soup = BeautifulSoup(html, "html.parser")
             return cls(soup, url)
         except Exception as e:
@@ -67,7 +67,7 @@ class AnySelectorABC(ABC):
     @classmethod
     async def from_url(cls, url: str, http_session: ClientSession) -> AnySelectorABC:
         try:
-            html = await response_(url, http_session)
+            html = await get_soup.response_(url, http_session)
             soup = BeautifulSoup(html, "html.parser")
             return cls(soup, url)
         except Exception as e:
